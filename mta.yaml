@@ -38,3 +38,21 @@ modules:
       JBP_CONFIG_SAPJVM_MEMORY_SIZES: 'metaspace:128m..'
       # logback-spring.xmlに定義されたプロファイル名を指定する
       SPRING_PROFILES_ACTIVE: 'cloud'
+  - name: addondb
+    description: SAP HANA DATABASE PROJECT
+    type: hdb
+    path: addondb
+    requires:
+    - name: addondb_hdi
+      properties:
+        # 以下の記述があるとエラーになるので実際のHDI名を直書きする
+        # TARGET_CONTAINER: ~{hdi-container-name}
+        TARGET_CONTAINER: addondb_hdi
+resources:
+  - name: addondb_hdi
+    type: com.sap.xs.hdi-container
+    parameters:
+      config:
+        schema: ADDONDB
+      properties:
+        hdi-container-name: ${service-name}
