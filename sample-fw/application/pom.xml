@@ -3,20 +3,20 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <name>sample-java - Application</name>
-    <description>sample-java - Application</description>
+    <name>sample-fw - Application</name>
+    <description>sample-fw - Application</description>
 
-    <artifactId>sample-java-application</artifactId>
+    <artifactId>sample-fw-application</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <parent>
-        <groupId>com.spring.sample.java</groupId>
-        <artifactId>sample-java</artifactId>
+        <groupId>com.fw.sample.java</groupId>
+        <artifactId>sample-fw</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <!-- war生成のために追加 -->
-    <packaging>${packaging.type}</packaging>
+    <!-- war生成のために追加/共通機能配布用のためjarのまま
+    <packaging>war</packaging> -->
 
     <properties>
         <surefire.skipTests>false</surefire.skipTests>
@@ -41,36 +41,29 @@
         <jacoco.executionDataFile>${project.build.directory}/coverage-reports/jacoco.exec</jacoco.executionDataFile>
         <jacoco.includes>*</jacoco.includes>
         <jacoco.excludes>org.apache.*</jacoco.excludes>
-        <!-- war生成のために追加 -->
-        <failOnMissingWebXml>false</failOnMissingWebXml>   
-        <packaging.type>war</packaging.type>
-        <tomcat.scope>provided</tomcat.scope>
+        <!-- war生成のために追加/共通機能配布用のためjarのまま 
+        <failOnMissingWebXml>false</failOnMissingWebXml>   -->
     </properties>
 
     <dependencies>
-    
-        <!-- fw -->
-        <dependency>
-            <groupId>com.fw.sample.java</groupId>
-            <artifactId>sample-fw-application</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency> 
-
         <dependency>
             <groupId>com.sap.cloud.sdk.cloudplatform</groupId>
             <artifactId>scp-cf</artifactId>
+            <!--実験-->
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.sap.cloud.sdk.s4hana</groupId>
             <artifactId>s4hana-all</artifactId>
+            <!--実験-->
+            <scope>provided</scope>
         </dependency>
 
         <!-- <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <scope>provided</scope>
-        </dependency> -->
-        <!-- <dependency>
+        </dependency>
+        <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>jcl-over-slf4j</artifactId>
             <scope>runtime</scope>
@@ -82,17 +75,23 @@
         <dependency>
             <groupId>com.sap.hcp.cf.logging</groupId>
             <artifactId>cf-java-logging-support-logback</artifactId>
+            <!--実験-->
+            <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+            <!--実験-->
+            <scope>provided</scope>
         </dependency>
 
 
         <dependency>
             <groupId>javax.inject</groupId>
             <artifactId>javax.inject</artifactId>
+            <!--実験-->
+            <scope>provided</scope>
         </dependency>
 
         <!-- Dependencies for security setup -->
@@ -115,18 +114,19 @@
             <scope>test</scope>
         </dependency>
         
-        <!-- war生成のために追加 -->
+        <!-- war生成のために追加/共通機能のためwarではないがSpringは含めなくてよいため残す -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-tomcat</artifactId>
-            <scope>${tomcat.scope}</scope>
+            <scope>provided</scope>
         </dependency>
-
     </dependencies>
 
     <build>
         <finalName>${project.artifactId}</finalName>
         <plugins>
+
+            <!--FWとして配布するためrepackageは行わない 
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
@@ -141,7 +141,7 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin>
+            </plugin> -->
 
             <plugin>
                 <groupId>com.sap.cloud.sdk.plugins</groupId>
@@ -161,7 +161,7 @@
 
                             To learn more, visit: https://blogs.sap.com/2018/10/23/usage-analytics-s4sdk/
                             -->
-                            <salt>86017ba0dfa782f29aa1336dcd2aa6e0caad21a9f475ecb98c11bd7820d2f575</salt>
+                            <salt>457cf0837a20293ce2eb0d683b0750fbd52eee4ded0e51213df5a291ca0555cf</salt>
                         </configuration>
                     </execution>
                 </executions>
@@ -209,54 +209,6 @@
                     </systemPropertyVariables>
                 </configuration>
             </plugin>
-            <!-- scpfw -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-install-plugin</artifactId>
-                <executions>
-                    <execution>
-                    <id>install-external</id>
-                    <phase>clean</phase>
-                    <configuration>
-                        <file>${project.basedir}/src/lib/sample-fw-application.jar</file>
-                        <repositoryLayout>default</repositoryLayout>
-                        <groupId>com.fw.sample.java</groupId>
-                        <artifactId>sample-fw-application</artifactId>
-                        <version>1.0-SNAPSHOT</version>
-                        <packaging>jar</packaging>
-                        <generatePom>true</generatePom>
-                    </configuration>
-                    <goals>
-                        <goal>install-file</goal>
-                    </goals>
-                    </execution>
-                </executions>
-            </plugin>
         </plugins>
     </build>
-    
-    <profiles>
-        <profile>
-            <id>jar</id>
-            <properties>
-                <packaging.type>jar</packaging.type>
-                <tomcat.scope>compile</tomcat.scope>
-            </properties>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.springframework.boot</groupId>
-                        <artifactId>spring-boot-maven-plugin</artifactId>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        <profile>
-            <id>war</id>
-            <properties>
-                <packaging.type>war</packaging.type>
-                <tomcat.scope>provided</tomcat.scope>
-            </properties>
-        </profile>
-    </profiles>
 </project>

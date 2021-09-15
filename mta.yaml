@@ -20,24 +20,24 @@ modules:
       JBP_CONFIG_SAPJVM_MEMORY_SIZES: 'metaspace:128m..'
       # logback-spring.xmlに定義されたプロファイル名を指定する
       SPRING_PROFILES_ACTIVE: 'cloud'
-  - name: sample-java2
-    type: java
-    path: sample-java2/application
-    parameters:
-      #parametersに記載可能な情報の一覧
-      #https://github.com/cloudfoundry-incubator/multiapps-controller/wiki/Supported-Parameters#module-parameters
-      memory: 1500M
-      timeout: 300
-      random-route: true
-      buildpacks:
-        - sap_java_buildpack
-    properties:
-      #propertiesにはユーザ定義のENV値を設定する
-      # TARGET_RUNTIME: main
-      TARGET_RUNTIME: tomcat
-      JBP_CONFIG_SAPJVM_MEMORY_SIZES: 'metaspace:128m..'
-      # logback-spring.xmlに定義されたプロファイル名を指定する
-      SPRING_PROFILES_ACTIVE: 'cloud'
+  # - name: sample-fw
+  #   type: java
+  #   path: sample-fw/application
+  #   parameters:
+  #     #parametersに記載可能な情報の一覧
+  #     #https://github.com/cloudfoundry-incubator/multiapps-controller/wiki/Supported-Parameters#module-parameters
+  #     memory: 1500M
+  #     timeout: 300
+  #     random-route: true
+  #     buildpacks:
+  #       - sap_java_buildpack
+  #   properties:
+  #     #propertiesにはユーザ定義のENV値を設定する
+  #     # TARGET_RUNTIME: main
+  #     TARGET_RUNTIME: tomcat
+  #     JBP_CONFIG_SAPJVM_MEMORY_SIZES: 'metaspace:128m..'
+  #     # logback-spring.xmlに定義されたプロファイル名を指定する
+  #     SPRING_PROFILES_ACTIVE: 'cloud'
   - name: addondb
     description: SAP HANA DATABASE PROJECT
     type: hdb

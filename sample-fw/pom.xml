@@ -3,11 +3,11 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <name>sample-java - Root</name>
-    <description>sample-java - Root</description>
+    <name>sample-fw - Root</name>
+    <description>sample-fw - Root</description>
 
-    <groupId>com.spring.sample.java</groupId>
-    <artifactId>sample-java</artifactId>
+    <groupId>com.fw.sample.java</groupId>
+    <artifactId>sample-fw</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
@@ -110,8 +110,6 @@
                     </execution>
                 </executions>
             </plugin>
-            
-            
         </plugins>
     </build>
 </project>

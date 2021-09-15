@@ -1,0 +1,24 @@
+---
+applications:
+
+- name: sample-fw
+  memory: 1500M
+  timeout: 300
+  random-route: true
+  # mta.ymalから起動するためwarに変更
+  # path: application/target/sample-fw-application.jar
+  path: application/target/sample-fw-application.war
+  buildpacks:
+    - sap_java_buildpack
+  env:
+     # warに変更したためtomcatに変更
+    # TARGET_RUNTIME: main
+    TARGET_RUNTIME: tomcat
+    # logback-spring.xmlに定義されたプロファイル名を指定する
+    SPRING_PROFILES_ACTIVE: 'cloud'
+    JBP_CONFIG_SAPJVM_MEMORY_SIZES: 'metaspace:128m..'
+#  services:
+#  - my-application-logs
+#  - my-xsuaa
+#  - my-destination
+#  - my-connectivity

@@ -3,15 +3,15 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <name>sample-java - Integration Tests</name>
-    <description>sample-java - Integration Tests</description>
+    <name>sample-fw - Integration Tests</name>
+    <description>sample-fw - Integration Tests</description>
 
-    <artifactId>sample-java-integration-tests</artifactId>
+    <artifactId>sample-fw-integration-tests</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <parent>
-        <groupId>com.spring.sample.java</groupId>
-        <artifactId>sample-java</artifactId>
+        <groupId>com.fw.sample.java</groupId>
+        <artifactId>sample-fw</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
@@ -41,10 +41,9 @@
     </properties>
 
     <dependencies>
-
         <dependency>
-            <groupId>com.spring.sample.java</groupId>
-            <artifactId>sample-java-application</artifactId>
+            <groupId>com.fw.sample.java</groupId>
+            <artifactId>sample-fw-application</artifactId>
             <version>1.0-SNAPSHOT</version>
             <exclusions>
                 <exclusion>
@@ -157,5 +156,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>
