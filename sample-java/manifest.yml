@@ -15,8 +15,9 @@ applications:
     # TARGET_RUNTIME: main
     TARGET_RUNTIME: tomcat
     # logback-spring.xmlに定義されたプロファイル名を指定する
-    SPRING_PROFILES_ACTIVE: 'cloud'
+    SPRING_PROFILES_ACTIVE: cloud
     JBP_CONFIG_SAPJVM_MEMORY_SIZES: 'metaspace:128m..'
+    service_name_for_DefaultDB: addondb_hdi
 #  services:
 #  - my-application-logs
 #  - my-xsuaa

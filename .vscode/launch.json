@@ -7,7 +7,7 @@
       "type": "java",
       "name": "Launch Java Program",
       "request": "launch",
-        // "mainClass": "com.fw.sample.java.FwApplication"
+      // "mainClass": "com.fw.sample.java.FwApplication"
       "mainClass": "com.spring.sample.java.Application"
     }
   ]

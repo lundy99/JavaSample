@@ -41,7 +41,7 @@
         <jacoco.executionDataFile>${project.build.directory}/coverage-reports/jacoco.exec</jacoco.executionDataFile>
         <jacoco.includes>*</jacoco.includes>
         <jacoco.excludes>org.apache.*</jacoco.excludes>
-        <!-- war生成のために追加 -->
+        <!-- war生成のために追加 https://sap.github.io/cloud-sdk/docs/java/guides/spring-boot-war-deployment-->
         <failOnMissingWebXml>false</failOnMissingWebXml>   
         <packaging.type>war</packaging.type>
         <tomcat.scope>provided</tomcat.scope>
@@ -120,6 +120,20 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-tomcat</artifactId>
             <scope>${tomcat.scope}</scope>
+        </dependency>
+
+        <!-- Control the structure from RFC return-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- JDBC Driver for HANA Cloud -->
+        <dependency>
+            <groupId>com.sap.cloud.db.jdbc</groupId>
+            <artifactId>ngdbc</artifactId>
+            <version>2.9.12</version>
         </dependency>
 
     </dependencies>
@@ -207,6 +221,16 @@
                         <surefire.forkDir>${project.build.directory}/surefire-fork/${surefire.forkNumber}/
                         </surefire.forkDir>
                     </systemPropertyVariables>
+                </configuration>
+            </plugin>
+            <!-- war生成のために追加　https://sap.github.io/cloud-sdk/docs/java/guides/spring-boot-war-deployment -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <!-- use latest version here -->
+                <version>3.3.1</version>
+                <configuration>
+                <attachClasses>true</attachClasses>
                 </configuration>
             </plugin>
             <!-- scpfw -->

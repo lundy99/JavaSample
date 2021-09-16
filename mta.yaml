@@ -3,7 +3,7 @@ ID: com.spring.sample.java.JavaSample
 version: 0.0.1
 modules:
   - name: sample-java
-    type: java
+    type: java.tomcat
     path: sample-java/application
     parameters:
       #parametersに記載可能な情報の一覧
@@ -19,7 +19,11 @@ modules:
       TARGET_RUNTIME: tomcat
       JBP_CONFIG_SAPJVM_MEMORY_SIZES: 'metaspace:128m..'
       # logback-spring.xmlに定義されたプロファイル名を指定する
-      SPRING_PROFILES_ACTIVE: 'cloud'
+      SPRING_PROFILES_ACTIVE: cloud
+      # springBootをWARに変更しJCOを使用する https://sap.github.io/cloud-sdk/docs/java/guides/spring-boot-war-deployment
+      USE_JCO: true
+      #　
+      service_name_for_DefaultDB: addondb_hdi
   # - name: sample-fw
   #   type: java
   #   path: sample-fw/application

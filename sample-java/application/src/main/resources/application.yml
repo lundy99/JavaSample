@@ -1,2 +1,47 @@
 server:
   port: 8080
+# server.servlet.context-parameters:
+#   Resource:
+#     name: jdbc/DefaultDB
+#     auth: Container
+#     type: javax.sql.DataSource
+#     factory: com.sap.xs.jdbc.datasource.tomcat.TomcatDataSourceFactory
+#     service: ${service_name_for_DefaultDB}
+#     maxActive: 20
+
+spring:
+  datasource:
+    name: jdbc/DefaultDB
+    driverClassName: com.sap.cloud.db.jdbc
+    type: com.sap.xs.jdbc.datasource.tomcat.TomcatDataSourceFactory
+    service: ${service_name_for_DefaultDB}
+    maxActive: 20
+spring.datasour
+
+# spring:
+# # データソース設定
+#   datasource:
+#     driverClassName: com.sap.cloud.db.jdbc
+#     type: com.sap.xs.jdbc.datasource.tomcat.TomcatDataSourceFactory
+#     service: ${service_name_for_HDI}
+#     maxActive: 20
+
+# datasource:
+#     driverClassName: com.sap.cloud.db.jdbc
+#     url: jdbc:mysql://localhost/test_db
+#     username: user
+#     password: password
+#     type: com.sap.xs.jdbc.datasource.tomcat.TomcatDataSourceFactory
+#     hikari:
+#       maximum-pool-size: 20
+#       minimum-idle: 10
+# 参考）HikariCPを使用する場合
+#   datasource:
+#     driverClassName: com.mysql.jdbc.Driver
+#     url: jdbc:mysql://localhost/test_db
+#     username: user
+#     password: password
+#     type: com.zaxxer.hikari.HikariDataSource
+#     hikari:
+#       maximum-pool-size: 20
+#       minimum-idle: 10
