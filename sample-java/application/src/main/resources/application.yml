@@ -9,15 +9,14 @@ server:
 #     service: ${service_name_for_DefaultDB}
 #     maxActive: 20
 
-spring:
-  datasource:
-    name: jdbc/DefaultDB
-    driverClassName: com.sap.cloud.db.jdbc
-    type: com.sap.xs.jdbc.datasource.tomcat.TomcatDataSourceFactory
-    service: ${service_name_for_DefaultDB}
-    maxActive: 20
-spring.datasour
-
+# spring:
+#   datasource:
+#     name: jdbc/DefaultDB
+#     driver-class-name: com.sap.cloud.db.jdbc
+#     type: com.sap.xs.jdbc.datasource.tomcat.TomcatDataSourceFactory
+#     service: ${service_name_for_DefaultDB}
+#     maxActive: 20
+    
 # spring:
 # # データソース設定
 #   datasource:
