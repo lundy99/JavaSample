@@ -24,6 +24,8 @@ modules:
       USE_JCO: true
       #　
       service_name_for_DefaultDB: addondb_hdi
+      requires: 
+        s4h-destination
   # - name: sample-fw
   #   type: java
   #   path: sample-fw/application
